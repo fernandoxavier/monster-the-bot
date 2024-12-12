@@ -25,3 +25,11 @@ run the application
 ```
 node bot.js
 ```
+
+## docker
+
+```
+docker build . -t monster-bot:latest
+
+docker run -it -d --restart --name mnstrnho monster-bot:latest
+```
