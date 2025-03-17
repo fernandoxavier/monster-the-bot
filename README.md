@@ -28,7 +28,7 @@ DEEZER_DECRIPTION_KEY=""
 run the application
 
 ```
-node bot.js
+node --openssl-legacy-provider bot.js
 ```
 
 ## docker
