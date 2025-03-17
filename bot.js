@@ -15,8 +15,10 @@
     buttonManager,
     slashCommandsManager,
   } = require("./src/structures/managers/export");
+  const { DeezerExtractor, NodeDecryptor } = require("discord-player-deezer");
   const { Player } = require("discord-player");
-  const { YoutubeiExtractor } = require("discord-player-youtubei");
+  // Disabled because youtube is breaking things!
+  /* const { YoutubeiExtractor } = require("discord-player-youtubei"); */
   const botClient = new Client({
     intents: [
       GatewayIntentBits.Guilds,
@@ -44,14 +46,20 @@
   });
 
   (async () => {
-    await player.extractors.register(YoutubeiExtractor, {
+    await player.extractors.register(DeezerExtractor, {
+      arl: credentialManager.deezerArlKey,
+      decryptionKey: credentialManager.deezerDecriptionKey,
+      decryptor: NodeDecryptor,
+    });
+    // Disabled because youtube is breaking things!
+    /* await player.extractors.register(YoutubeiExtractor, {
       streamOptions: {
         useClient: "ANDROID",
       },
     });
     await player.extractors.loadDefault(
       (ext) => !["YouTubeExtractor"].includes(ext)
-    );
+    ); */
   })();
 
   exports.rootPath = dirPath;

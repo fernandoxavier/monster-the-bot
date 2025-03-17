@@ -7,4 +7,6 @@ module.exports = {
   mongoUri: process.env.MONGO_URI,
   birthdayAnnouncementChannelId: process.env.BIRTHDAY_ANNOUNCEMENT_CHANNEL_ID,
   openAiApiKey: process.env.OPENAI_API_KEY,
+  deezerArlKey: process.env.DEEZER_ARL_KEY,
+  deezerDecriptionKey: process.env.DEEZER_DECRIPTION_KEY,
 };
