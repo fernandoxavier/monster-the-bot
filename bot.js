@@ -15,10 +15,9 @@
     buttonManager,
     slashCommandsManager,
   } = require("./src/structures/managers/export");
-  const { DeezerExtractor, NodeDecryptor } = require("discord-player-deezer");
+  /* const { DeezerExtractor, NodeDecryptor } = require("discord-player-deezer"); */
   const { Player } = require("discord-player");
-  // Disabled because youtube is breaking things!
-  /* const { YoutubeiExtractor } = require("discord-player-youtubei"); */
+  const { YoutubeiExtractor } = require("discord-player-youtubei");
   const botClient = new Client({
     intents: [
       GatewayIntentBits.Guilds,
@@ -46,20 +45,23 @@
   });
 
   (async () => {
-    await player.extractors.register(DeezerExtractor, {
+    /* await player.extractors.register(DeezerExtractor, {
       arl: credentialManager.deezerArlKey,
       decryptionKey: credentialManager.deezerDecriptionKey,
       decryptor: NodeDecryptor,
-    });
-    // Disabled because youtube is breaking things!
-    /* await player.extractors.register(YoutubeiExtractor, {
+    }); */
+    await player.extractors.register(YoutubeiExtractor, {
       streamOptions: {
-        useClient: "ANDROID",
+        authentication: credentialManager.youtubeAuthToken,
+        generateWithPoToken: true,
+        streamOptions: {
+          useClient: "WEB",
+        },
       },
     });
     await player.extractors.loadDefault(
       (ext) => !["YouTubeExtractor"].includes(ext)
-    ); */
+    );
   })();
 
   exports.rootPath = dirPath;
