@@ -52,7 +52,6 @@
     }); */
     await player.extractors.register(YoutubeiExtractor, {
       streamOptions: {
-        authentication: credentialManager.youtubeAuthToken,
         generateWithPoToken: true,
         streamOptions: {
           useClient: "WEB",
