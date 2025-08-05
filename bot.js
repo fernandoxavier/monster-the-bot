@@ -18,6 +18,7 @@
   /* const { DeezerExtractor, NodeDecryptor } = require("discord-player-deezer"); */
   const { Player } = require("discord-player");
   const { YoutubeiExtractor } = require("discord-player-youtubei");
+  const { DefaultExtractors } = require('@discord-player/extractor');
   const botClient = new Client({
     intents: [
       GatewayIntentBits.Guilds,
@@ -58,9 +59,7 @@
         },
       },
     });
-    await player.extractors.loadDefault(
-      (ext) => !["YouTubeExtractor"].includes(ext)
-    );
+    await player.extractors.loadMulti(DefaultExtractors);
   })();
 
   exports.rootPath = dirPath;
