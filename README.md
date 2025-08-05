@@ -34,7 +34,7 @@ node --openssl-legacy-provider bot.js
 ## docker
 
 ```
-docker build . -t monster-bot:latest
+docker build . -t monster-bot:latest --no-cache; docker save monster-bot:latest -o bot.tar; scp .\bot.tar monsters@monstrinho:~/bot.tar
 
 docker run -it -d --restart --name mnstrnho monster-bot:latest
 ```

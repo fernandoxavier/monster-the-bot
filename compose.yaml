@@ -1,0 +1,26 @@
+version: '1'
+services:
+  app:
+    container_name: ${CONTAINER_NAME}
+    image: monster-bot:latest
+    restart: always
+  restarter:
+    container_name: ${CONTAINER_NAME}-restarter
+    image: docker:cli
+    restart: unless-stopped
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+    entrypoint: ["/bin/sh","-c"]
+    command:
+      - |
+        while true; do
+          if [ "$$(date +'%H:%M')" = '05:00' ]; then
+            docker restart ${CONTAINER_NAME}
+          elif [ "$$(date +'%H:%M')" = '11:00' ]; then
+            docker restart ${CONTAINER_NAME}
+          elif [ "$$(date +'%H:%M')" = '17:00' ]; then
+            docker restart ${CONTAINER_NAME}
+          elif [ "$$(date +'%H:%M')" = '23:00' ]; then
+            docker restart ${CONTAINER_NAME}
+          fi
+          sleep 60
+        done

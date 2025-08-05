@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-RUN apt update && apt upgrade
+RUN apt update && apt -y upgrade
 RUN apt -y install ffmpeg nodejs npm
 
 WORKDIR /root/
@@ -12,4 +12,4 @@ RUN npm install
 
 COPY .env /root/monster-the-bot/
 
-CMD ["node", "bot.js"]
+CMD ["node", "--openssl-legacy-provider", "bot.js"]
