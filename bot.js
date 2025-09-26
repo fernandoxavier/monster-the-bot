@@ -53,11 +53,13 @@
     }); */
     await player.extractors.register(YoutubeiExtractor, {
       streamOptions: {
-        generateWithPoToken: true,
-        streamOptions: {
-          useClient: "WEB",
-        },
+        useClient: "WEB_EMBEDDED",
       },
+      innertubeConfigRaw: {
+        player_id: '0004de42',
+      },
+      generateWithPoToken: true,
+      useServerAbrStream: false,
     });
     await player.extractors.loadMulti(DefaultExtractors);
   })();
