@@ -17,9 +17,9 @@
   } = require("./src/structures/managers/export");
   /* const { DeezerExtractor, NodeDecryptor } = require("discord-player-deezer"); */
   const { Player } = require("discord-player");
-  /* const { YoutubeiExtractor } = require("discord-player-youtubei"); */
-  const { YoutubeExtractor } = require("discord-player-youtube");
-  const { DefaultExtractors } = require('@discord-player/extractor');
+  const { YoutubeiExtractor } = require("discord-player-youtubei");
+  /* const { YoutubeExtractor } = require("discord-player-youtube"); */
+  const { DefaultExtractors } = require("@discord-player/extractor");
   const botClient = new Client({
     intents: [
       GatewayIntentBits.Guilds,
@@ -62,8 +62,9 @@
       generateWithPoToken: true,
       useServerAbrStream: false,
     }); */
-    await player.extractors.register(YoutubeExtractor, {
-      YOUTUBE_COOKIE: credentialManager.youtubeCookie,
+    await player.extractors.register(YoutubeiExtractor, {
+      useYoutubeDL: true,
+      logLevel: "ALL",
     });
     await player.extractors.loadMulti(DefaultExtractors);
   })();
